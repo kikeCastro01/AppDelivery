@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             x:Class="Notificacion.consultarPedidos"
+             Title="Consultar Pedidos">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Lista de productos en la fila inferior -->
+        <ListView x:Name="listViewPedidos" Grid.Row="1" HasUnevenRows="True" RowHeight="150">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Utilizamos un ViewCell personalizado -->
+                    <ViewCell>
+                        <Grid Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="1" Margin="5">
+                                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                                    <Label Text="Nombre de Pedido: "/>
+                                    <Label Text="{Binding NombrePedido}"/>
+                                </StackLayout>
+                                <Label Text="Platillos: "/>
+                                <!-- ListView para Detalles -->
+                                <ListView ItemsSource="{Binding Detalles}" HasUnevenRows="True" HeightRequest="100">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding .}" />
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                                    <Label Text="Total: "/>
+                                    <Label Text="{Binding Total, StringFormat='{}{0:C}'}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                                    <Label Text="Direccion: "/>
+                                    <Label Text="{Binding Direccion}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                                    <Label Text="Fecha y Hora: "/>
+                                    <Label Text="{Binding FechaHora}" VerticalOptions="FillAndExpand"/>
+                                </StackLayout>
+                                <!-- Botones en la misma fila -->
+                                <Grid ColumnDefinitions="auto,auto" Margin="0,10,0,0">
+                                    <Button Grid.Column="0" Text="Ver ubicación" Clicked="btnVerUbicacion_Clicked" BackgroundColor="ForestGreen" TextColor="White" HorizontalOptions="Start" WidthRequest="125" HeightRequest="45" />
+                                    <Button Grid.Column="1" Text="Finalizar entrega" Clicked="btnFinalizarEntrega_Clicked" BackgroundColor="DarkRed" TextColor="White" HorizontalOptions="Start" WidthRequest="135" HeightRequest="45" Margin="10,0,0,0"/>
+                                </Grid>
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>

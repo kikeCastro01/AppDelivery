@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notificacion.consultarProductos"
+             Title="Consultar Platillos">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Botón en la fila superior -->
+        <!--<Button x:Name="btnRentar" Text="Rentar" TextColor="White" BackgroundColor="Purple" CornerRadius="20" WidthRequest="150" HeightRequest="40" Clicked="btnRentar_Clicked"/>-->
+
+        <!-- Lista de productos en la fila inferior -->
+        <ListView x:Name="listViewPlatillos" Grid.Row="1" HasUnevenRows="True" RowHeight="150">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Utilizamos un ViewCell personalizado -->
+                    <ViewCell>
+                        <Grid Margin="25">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Mostramos la imagen dentro de un Image -->
+                            <Image Grid.Column="0" Source="{Binding ImagenSource}" WidthRequest="125" HeightRequest="125" />
+
+                            <StackLayout Grid.Column="1" Margin="10,25,0,25">
+                                <Label Text="{Binding Nombre}" VerticalOptions="FillAndExpand" />
+                                <Label Text="{Binding Descripcion}" VerticalOptions="FillAndExpand" />
+                                <Label Text="{Binding Precio, StringFormat='{}{0:C}'}" VerticalOptions="FillAndExpand"/>
+                                <Button Grid.Column="2" Text="Eliminar" BackgroundColor="Red" TextColor="White" Clicked="btnEliminarPlatillo_Clicked" HorizontalOptions="Start" WidthRequest="90" HeightRequest="45" />
+                                <!--<Button Grid.Column="2" Text="Modificar" BackgroundColor="Purple" TextColor="White" Clicked="btnModificarPlatillo_Clicked" HorizontalOptions="Start" WidthRequest="90" HeightRequest="45" />-->
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notificacion.reportesPedidos"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             Title="Reportes de Pedidos">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <!-- DatePicker para la fecha de inicio -->
+            <Label 
+                Text="De la Fecha:" 
+                TextColor="White"/>
+            <DatePicker 
+                x:Name="fecha1DatePicker"
+                TextColor="White"
+                BackgroundColor="Gray"/>
+
+            <!-- DatePicker para la fecha de fin -->
+            <Label 
+                Text="A la Fecha:" 
+                TextColor="White"/>
+            <DatePicker 
+                x:Name="fecha2DatePicker"
+                TextColor="White"
+                BackgroundColor="Gray"/>
+
+            <!-- RadioButtons -->
+            <Label 
+                Text="Selecciona el tipo de consulta:" 
+                TextColor="White"/>
+            <RadioButton
+                x:Name="consultarFechaRadioButton"
+                Content="Por periodo"
+                TextColor="White"
+                CheckedChanged="OnRadioButtonCheckedChanged"/>
+            <RadioButton
+                x:Name="consultarTodoRadioButton"
+                Content="General"
+                TextColor="White"/>
+
+            <Button 
+                x:Name="btnConsultar"
+                Text="Consultar"
+                BackgroundColor="CornflowerBlue"
+                TextColor="White"
+                Clicked="btnConsultar_Clicked"/>
+
+            <!-- SfDataGrid para mostrar los pedidos -->
+            <syncfusion:SfDataGrid x:Name="pedidosDataGrid"
+                                   BackgroundColor="White"
+                                   AutoGenerateColumnsMode="None"
+                                   ColumnWidthMode="FitByCell"
+                                   RowHeight="100"
+                                   HeaderRowHeight="60">
+                <syncfusion:SfDataGrid.Columns>
+                    <syncfusion:DataGridTextColumn MappingName="NombrePedido" HeaderText="Nombre del Pedido"/>
+                    <!-- Columna para mostrar datos de array -->
+                    <syncfusion:DataGridTemplateColumn HeaderText="Detalles">
+                        <syncfusion:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <CollectionView ItemsSource="{Binding Detalles}">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Label Text="{Binding}" TextColor="Black"/>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </StackLayout>
+                            </DataTemplate>
+                        </syncfusion:DataGridTemplateColumn.CellTemplate>
+                    </syncfusion:DataGridTemplateColumn>
+                    <syncfusion:DataGridTextColumn MappingName="Total" HeaderText="Total"/>
+                    <syncfusion:DataGridDateColumn MappingName="FechaHora" HeaderText="Fecha"/>
+                    <!-- Agrega más columnas según las propiedades que desees mostrar -->
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+
+            <!-- TextBox para mostrar el total -->
+            <Label 
+                Text="Total:" 
+                TextColor="White"/>
+            <Entry 
+                x:Name="totalEntry"
+                Placeholder="Total"
+                TextColor="White"
+                BackgroundColor="Gray"
+                IsReadOnly="True"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

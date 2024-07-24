@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             x:Class="Notificacion.pedidosFinalizados"
+             Title="Pedidos Finalizados">
+
+    <!-- SfDataGrid para mostrar los pedidos -->
+    <syncfusion:SfDataGrid x:Name="pedidosDataGrid"
+                                   BackgroundColor="White"
+                                   AutoGenerateColumnsMode="None"
+                                   ColumnWidthMode="FitByCell"
+                                   RowHeight="100"
+                                   HeaderRowHeight="60">
+        <syncfusion:SfDataGrid.Columns>
+            <syncfusion:DataGridTextColumn MappingName="NombrePedido" HeaderText="Nombre del Pedido"/>
+            <!-- Columna para mostrar datos de array -->
+            <syncfusion:DataGridTemplateColumn HeaderText="Detalles">
+                <syncfusion:DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <CollectionView ItemsSource="{Binding Detalles}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding}" TextColor="Black"/>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </DataTemplate>
+                </syncfusion:DataGridTemplateColumn.CellTemplate>
+            </syncfusion:DataGridTemplateColumn>
+            <syncfusion:DataGridTextColumn MappingName="Total" HeaderText="Total"/>
+            <syncfusion:DataGridDateColumn MappingName="FechaHora" HeaderText="Fecha"/>
+            <syncfusion:DataGridTextColumn MappingName="Direccion" HeaderText="Dirección"/>
+            <syncfusion:DataGridTextColumn MappingName="Estatus" HeaderText="Estatus"/>
+            <!-- Agrega más columnas según las propiedades que desees mostrar -->
+        </syncfusion:SfDataGrid.Columns>
+    </syncfusion:SfDataGrid>
+</ContentPage>

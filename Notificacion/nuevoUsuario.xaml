@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notificacion.nuevoUsuario"
+             Title="Registrar Usuario">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Foto del usuario -->
+        <Image Grid.Column="1" Grid.Row="0" x:Name="imgUsuario" Aspect="AspectFill" HeightRequest="200" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+        <!-- Botón para cargar la foto -->
+        <Button x:Name="btnCargarFoto" Grid.Column="1" Grid.Row="1" Text="Cargar Foto" WidthRequest="110" HeightRequest="40" Clicked="btnCargarFoto_Clicked"/>
+
+        <!-- Nombre -->
+        <Entry Grid.Column="1" Grid.Row="2" x:Name="tbNombre" Placeholder="Nombre completo"/>
+
+        <!-- Teléfono -->
+        <Entry Grid.Column="1" Grid.Row="3" x:Name="tbTelefono" Placeholder="Telefono"/>
+
+        <!-- Email -->
+        <Entry Grid.Column="1" Grid.Row="4" x:Name="tbEmail" Placeholder="Email"/>
+
+        <!-- Género -->
+        <Label Grid.Column="1" Grid.Row="5" Text="Género:"/>
+        <StackLayout Grid.Column="1" Grid.Row="6" Orientation="Horizontal">
+            <CheckBox x:Name="cbMasculino" CheckedChanged="cbMasculino_CheckedChanged"/>
+            <Label Text="M" VerticalOptions="Center"/>
+            <CheckBox x:Name="cbFemenino" CheckedChanged="cbFemenino_CheckedChanged"/>
+            <Label Text="F" VerticalOptions="Center"/>
+        </StackLayout>
+
+        <!-- Fecha de nacimiento -->
+        <Label Grid.Column="1" Grid.Row="7" Text="Fecha de Nacimiento:"/>
+        <DatePicker Grid.Column="1" Grid.Row="8" x:Name="dpFechaNacimiento"/>
+
+        <!-- Contraseña y Repetir Contraseña -->
+        <StackLayout Grid.Column="1" Grid.Row="9">
+            <Entry x:Name="txtContraseña" Placeholder="Contraseña" IsPassword="True"/>
+            <Entry x:Name="txtRepetirContraseña" Placeholder="Repetir Contraseña" IsPassword="True"/>
+        </StackLayout>
+
+        <!-- Botones -->
+        <StackLayout Grid.Column="1" Grid.Row="10" Orientation="Horizontal" HorizontalOptions="End">
+            <Button x:Name="btnGuardar" Text="Guardar" TextColor="White" BackgroundColor="CornflowerBlue" Clicked="btnGuardar_Clicked" WidthRequest="110" HeightRequest="40"/>
+            <!--<Button x:Name="btnCancelar" Text="Cancelar" TextColor="White" BackgroundColor="PaleVioletRed" Clicked="btnCancelar_Clicked" WidthRequest="110" HeightRequest="40"/>-->
+        </StackLayout>
+    </Grid>
+</ContentPage>

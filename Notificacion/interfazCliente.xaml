@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notificacion.interfazCliente"
+             Title="Menu Restaurante">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Button x:Name="btnCerrarSesion" Text="Cerrar Sesion" TextColor="White" BackgroundColor="DarkRed" Clicked="OnBackButtonClicked" WidthRequest="120" HeightRequest="40"/>
+        <!-- Lista de productos en la fila inferior -->
+        <ListView x:Name="listViewPlatillos" Grid.Row="1" HasUnevenRows="True" RowHeight="150">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Utilizamos un ViewCell personalizado -->
+                    <ViewCell>
+                        <Grid Margin="25">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Mostramos la imagen dentro de un Image -->
+                            <Image Grid.Column="0" Source="{Binding ImagenSource}" WidthRequest="125" HeightRequest="125" />
+
+                            <VerticalStackLayout Grid.Column="1" Margin="10,25,0,25">
+                                <Label Text="{Binding Nombre}" VerticalOptions="FillAndExpand" />
+                                <Label Text="{Binding Descripcion}" VerticalOptions="FillAndExpand" />
+                                <Label Text="{Binding Precio, StringFormat='{}{0:C}'}" VerticalOptions="FillAndExpand"/>
+
+                                <!-- Botón "Agregar al carrito" -->
+                                <Button Text="Agregar al carrito" Clicked="btnAgregarAlCarrito_Clicked" TextColor="White" BackgroundColor="CornflowerBlue" VerticalOptions="EndAndExpand" WidthRequest="140" HeightRequest="40"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="Center" Margin="0,10,0,0">
+            <!-- Icono del carrito -->
+            <ImageButton Source="carrito.png" HorizontalOptions="End" WidthRequest="50" HeightRequest="50" Margin="0,10,0,10" Clicked="btnCarritoCompras_Clicked"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

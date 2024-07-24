@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notificacion.MainPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Image Source="logo5_7_3121.jpeg"
+               Grid.Column="1" Grid.Row="1">
+        </Image>
+        <VerticalStackLayout
+            Grid.Column="1"
+            Grid.Row="2">
+            <Entry 
+                x:Name="User"
+                Placeholder="Usuario"
+                Text="">
+            </Entry>
+            <Entry 
+                x:Name="ePassword"
+                IsPassword="True"
+                Placeholder="Contraseña">
+            </Entry>
+        </VerticalStackLayout>
+        <HorizontalStackLayout
+            Grid.Column="1"
+            Grid.Row="3"
+            HorizontalOptions="CenterAndExpand">
+            <Button
+                x:Name="btnIngresar"
+                Text="Ingresar"
+                TextColor="White"
+                BackgroundColor="ForestGreen"
+                CornerRadius="20"
+                WidthRequest="120"
+                HeightRequest="40"
+                Clicked="btnIngresar_Clicked">
+            </Button>
+            <Button
+                x:Name="btnNewUser"
+                Text="Registrar Usuario"
+                TextColor="White"
+                BackgroundColor="MediumPurple"
+                CornerRadius="20"
+                WidthRequest="150"
+                HeightRequest="40"
+                Clicked="btnNewUser_Clicked">
+            </Button>
+        </HorizontalStackLayout>
+    </Grid>
+
+</ContentPage>

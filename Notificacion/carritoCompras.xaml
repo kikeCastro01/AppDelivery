@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notificacion.carritoCompras"
+             Title="Carrito de Compras">
+
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Margin="10,10,10,0">
+                <Label Text="Pedido a nombre de:" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="5,0"/>
+                <Label x:Name="lblNombrePedido" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Margin="5,0"/>
+            </Grid>
+
+            <!-- Lista de productos en la fila inferior -->
+            <ListView x:Name="listViewPlatillos" Grid.Row="1" HasUnevenRows="True" RowHeight="270">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Utilizamos un ViewCell personalizado -->
+                        <ViewCell>
+                            <Grid Margin="25">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Mostramos la imagen dentro de un Image -->
+                                <Image Grid.Column="0" Source="{Binding ImagenSource}" WidthRequest="125" HeightRequest="125" />
+
+                                <StackLayout Grid.Column="1" Margin="10,25,0,25">
+                                    <Label Text="{Binding Nombre}" VerticalOptions="FillAndExpand" />
+                                    <Label Text="{Binding Descripcion}" VerticalOptions="FillAndExpand" />
+                                    <Label Text="{Binding Precio, StringFormat='{}{0:C}'}" VerticalOptions="FillAndExpand"/>
+                                    <!-- Grid para los botones de incrementar y decrementar cantidad -->
+                                    <Grid ColumnSpacing="0" HorizontalOptions="Start">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Botón de decrementar -->
+                                        <Button Text="-" Grid.Column="0" Clicked="btnDecrementarCantidad_Clicked" FontSize="Medium" />
+
+                                        <!-- Entry para la cantidad -->
+                                        <Entry x:Name="entryCantidad" Text="{Binding Cantidad}" Placeholder="Cantidad" TextChanged="entryCantidad_TextChanged" Keyboard="Numeric"  HorizontalOptions="Start" WidthRequest="45" Grid.Column="1" />
+
+                                        <!-- Botón de incrementar -->
+                                        <Button Text="+" Grid.Column="2" Clicked="btnIncrementarCantidad_Clicked" FontSize="Medium" />
+
+                                        <!-- ImageButton -->
+                                        <Button Grid.Column="3" Text="Eliminar" BackgroundColor="Red" TextColor="White" Clicked="btnEliminarCarrito_Clicked" WidthRequest="90" HeightRequest="45" />
+                                    </Grid>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!-- Etiquetas de latitud y longitud en la nueva fila -->
+            <Grid Grid.Row="2" ColumnDefinitions="Auto, Auto, *, Auto, Auto, *">
+                <Label Text="Latitud:" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0"/>
+                <Label x:Name="lblLatitud" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0" FontSize="Micro"/>
+                <Label Text="Longitud:" Grid.Column="3" HorizontalOptions="End" VerticalOptions="Center" Margin="10,0"/>
+                <Label x:Name="lblLongitud" Grid.Column="4" HorizontalOptions="End" VerticalOptions="Center" Margin="10,0" FontSize="Micro"/>
+            </Grid>
+            <Grid Grid.Row="3" ColumnDefinitions="Auto, *">
+                <Label Text="Dirección:" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0"/>
+                <Label x:Name="lblDireccion" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0"/>
+            </Grid>
+            <!-- Etiqueta para mostrar el total -->
+            <Label x:Name="lblTotal" HorizontalOptions="Center" Grid.Row="4"  FontSize="Large" FontAttributes="Bold" />
+
+            <HorizontalStackLayout Grid.Row="4" HorizontalOptions="Center">
+            <!-- Botón "Finalizar Pedido" -->
+                <Button Text="Seleccionar ubicación" TextColor="White" BackgroundColor="Green" Grid.Row="2" HorizontalOptions="Center" HeightRequest="45" Clicked="btnMapa_Clicked"/>
+            <Button Text="Realizar Pedido" TextColor="White" BackgroundColor="CornflowerBlue" Grid.Row="2" HorizontalOptions="Center" Margin="30" Clicked="btnRealizarPedido_Clicked"/>
+            </HorizontalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
